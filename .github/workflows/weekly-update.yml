@@ -1,0 +1,146 @@
+name: 每周自动更新模型定价
+
+on:
+  schedule:
+    # 每周一 UTC 02:00（北京时间 10:00）
+    - cron: '0 2 * * 1'
+  workflow_dispatch: # 支持手动触发
+
+permissions:
+  contents: write
+
+jobs:
+  update-pricing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 安装依赖
+        run: pip install requests beautifulsoup4
+
+      - name: 抓取并更新定价数据
+        run: |
+          cat > /tmp/update_pricing.py << 'PYEOF'
+          import json, re, sys, os
+          from datetime import datetime, timezone
+          from collections import Counter
+
+          try:
+              import requests
+              from bs4 import BeautifulSoup
+          except ImportError:
+              print("依赖缺失，跳过抓取，仅更新日期")
+              requests = None
+
+          DATA_FILE = "pricing.json"
+          HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; LLMPricingBot/1.0)"}
+          changes = []
+
+          with open(DATA_FILE, encoding="utf-8") as f:
+              data = json.load(f)
+
+          models = data.get("models", [])
+
+          def fetch_text(url):
+              if not requests:
+                  return None
+              try:
+                  r = requests.get(url, headers=HEADERS, timeout=30)
+                  r.raise_for_status()
+                  soup = BeautifulSoup(r.text, "html.parser")
+                  return soup.get_text()
+              except Exception as e:
+                  print(f"  抓取失败 {url}: {e}", file=sys.stderr)
+                  return None
+
+          def try_update_price(model, text, inp_key="input_price_usd_per_mtok", out_key="output_price_usd_per_mtok"):
+              """在模型名附近查找两个 $X.XX 价格"""
+              if not text:
+                  return
+              name = re.escape(model["model"])
+              pattern = re.compile(rf'{name}.{{0,800}}?\$(\d+\.?\d*).{{0,200}}?\$(\d+\.?\d*)', re.DOTALL)
+              m = pattern.search(text)
+              if m:
+                  inp, out = float(m.group(1)), float(m.group(2))
+                  if inp > 0 and out > 0 and out >= inp:
+                      if model.get(inp_key) != inp:
+                          changes.append(f"  {model['model']} 输入: {model.get(inp_key)} → {inp}")
+                          model[inp_key] = inp
+                      if model.get(out_key) != out:
+                          changes.append(f"  {model['model']} 输出: {model.get(out_key)} → {out}")
+                          model[out_key] = out
+
+          # === 各厂商定价页 ===
+          VENDOR_PAGES = {
+              "OpenAI": "https://platform.openai.com/docs/pricing",
+              "Anthropic": "https://platform.claude.com/docs/en/about-claude/pricing",
+              "Google": "https://ai.google.dev/gemini-api/docs/pricing",
+              "DeepSeek": "https://api-docs.deepseek.com/quick_start/pricing-details-usd/",
+              "Mistral AI": "https://mistral.ai/pricing/",
+              "xAI": "https://lmmarketcap.com/xai-grok-pricing",
+          }
+
+          for vendor, url in VENDOR_PAGES.items():
+              vendor_models = [m for m in models if m["vendor"] == vendor and m["type"] in ("text", "multimodal")]
+              if not vendor_models:
+                  continue
+              print(f"抓取 {vendor}...")
+              text = fetch_text(url)
+              for m in vendor_models:
+                  try_update_price(m, text)
+
+          # === 重新规范化 price_sort_value ===
+          for m in models:
+              mtype = m.get("type", "text")
+              if mtype in ("text", "multimodal"):
+                  out = m.get("output_price_usd_per_mtok")
+                  inp = m.get("input_price_usd_per_mtok")
+                  m["price_input"] = inp
+                  m["price_output"] = out
+                  m["price_sort_value"] = out if out is not None else (inp or 0)
+                  m["price_sort_label"] = f"${out}/Mtok out" if out else f"${inp}/Mtok in"
+
+          # === 更新 meta ===
+          data["_meta"]["last_updated"] = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+          vendor_counts = Counter(m["vendor"] for m in models)
+          type_counts = Counter(m["type"] for m in models)
+          data["_meta"]["stats"] = {
+              "total_models": len(models),
+              "by_vendor": dict(vendor_counts.most_common()),
+              "by_type": dict(type_counts.most_common()),
+          }
+
+          # === 写回 ===
+          with open(DATA_FILE, "w", encoding="utf-8") as f:
+              json.dump(data, f, ensure_ascii=False, indent=2)
+
+          if changes:
+              print(f"\n发现 {len(changes)} 处变更:")
+              for c in changes:
+                  print(c)
+          else:
+              print("\n本周无价格变更，仅刷新更新日期")
+
+          # 写变更摘要供 commit message 使用
+          with open("/tmp/changes.txt", "w") as f:
+              f.write("\n".join(changes) if changes else "本周无价格变动，仅刷新更新日期")
+          PYEOF
+          python /tmp/update_pricing.py
+
+      - name: 提交并推送
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pricing.json
+          git diff --staged --quiet && echo "无变更需要提交" && exit 0
+          SUMMARY=$(cat /tmp/changes.txt 2>/dev/null || echo "自动更新")
+          git commit -m "🔄 每周定价自动更新 ($(date -u +%Y-%m-%d))
+
+          $SUMMARY"
+          git push
