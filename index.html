@@ -425,7 +425,7 @@ const TYPE_COLORS = {
 // ==================== 加载数据 ====================
 async function loadData() {
   try {
-    const resp = await fetch('data/pricing.json');
+    const resp = await fetch('pricing.json');
     allData = await resp.json();
     initPage();
   } catch (e) {
