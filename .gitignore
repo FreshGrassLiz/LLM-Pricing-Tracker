@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# 临时文件
+*.log
+.DS_Store
+
+# 本地预览服务器进程文件
+.pid
