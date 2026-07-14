@@ -25,7 +25,7 @@
       "https://fastgptplus.com/en/posts/sora-2-api-pricing",
       "https://ai.baidu.com/ai-doc/WENXINWORKSHOP/3m1jdtoz1"
     ],
-    "last_updated": "2026-06-25",
+    "last_updated": "2026-07-14",
     "generator": "scripts/normalize_data.py",
     "stats": {
       "total_models": 99,
@@ -142,14 +142,14 @@
       "context_window": "200K",
       "pricing_url": "https://platform.openai.com/docs/pricing",
       "notes": "2025 年 1 月发布的高端推理模型，$15/$60 per Mtok（缓存命中 $7.50）。已被 o4 系列替代。",
-      "input_price_usd_per_mtok": 15.0,
-      "output_price_usd_per_mtok": 60.0,
-      "price_input": 15.0,
-      "price_output": 60.0,
+      "input_price_usd_per_mtok": 5.0,
+      "output_price_usd_per_mtok": 20.0,
+      "price_input": 5.0,
+      "price_output": 20.0,
       "price_cache_hit": null,
       "price_unit": "$/Mtok",
-      "price_sort_value": 60.0,
-      "price_sort_label": "$60.0/Mtok out"
+      "price_sort_value": 20.0,
+      "price_sort_label": "$20.0/Mtok out"
     },
     {
       "model": "o3-mini",
@@ -232,14 +232,14 @@
       "context_window": "200K",
       "pricing_url": "https://platform.openai.com/docs/pricing",
       "notes": "2025 年 4 月发布的推理模型，替代 o3-mini。",
-      "input_price_usd_per_mtok": 1.1,
-      "output_price_usd_per_mtok": 4.4,
-      "price_input": 1.1,
-      "price_output": 4.4,
+      "input_price_usd_per_mtok": 1.0,
+      "output_price_usd_per_mtok": 4.0,
+      "price_input": 1.0,
+      "price_output": 4.0,
       "price_cache_hit": null,
       "price_unit": "$/Mtok",
-      "price_sort_value": 4.4,
-      "price_sort_label": "$4.4/Mtok out"
+      "price_sort_value": 4.0,
+      "price_sort_label": "$4.0/Mtok out"
     },
     {
       "model": "GPT-5 Nano",
@@ -494,13 +494,13 @@
       "pricing_url": "https://platform.claude.com/docs/en/about-claude/pricing",
       "notes": "Opus 系列降价至 $5/$25（较 4.0 的 $15/$75 大幅下调）。1M token 上下文。",
       "input_price_usd_per_mtok": 5.0,
-      "output_price_usd_per_mtok": 25.0,
+      "output_price_usd_per_mtok": 6.25,
       "price_input": 5.0,
-      "price_output": 25.0,
+      "price_output": 6.25,
       "price_cache_hit": null,
       "price_unit": "$/Mtok",
-      "price_sort_value": 25.0,
-      "price_sort_label": "$25.0/Mtok out"
+      "price_sort_value": 6.25,
+      "price_sort_label": "$6.25/Mtok out"
     },
     {
       "model": "Claude Opus 4.8",
@@ -512,13 +512,13 @@
       "pricing_url": "https://platform.claude.com/docs/en/about-claude/pricing",
       "notes": "Opus 最新版，1M 上下文按标准定价（无长上下文加价）。",
       "input_price_usd_per_mtok": 5.0,
-      "output_price_usd_per_mtok": 25.0,
+      "output_price_usd_per_mtok": 6.25,
       "price_input": 5.0,
-      "price_output": 25.0,
+      "price_output": 6.25,
       "price_cache_hit": null,
       "price_unit": "$/Mtok",
-      "price_sort_value": 25.0,
-      "price_sort_label": "$25.0/Mtok out"
+      "price_sort_value": 6.25,
+      "price_sort_label": "$6.25/Mtok out"
     },
     {
       "model": "Claude Sonnet 4.5 / 4.6",
@@ -548,13 +548,13 @@
       "pricing_url": "https://platform.claude.com/docs/en/about-claude/pricing",
       "notes": "Haiku 最新版。Batch API 享 50% 折扣。",
       "input_price_usd_per_mtok": 1.0,
-      "output_price_usd_per_mtok": 5.0,
+      "output_price_usd_per_mtok": 1.25,
       "price_input": 1.0,
-      "price_output": 5.0,
+      "price_output": 1.25,
       "price_cache_hit": null,
       "price_unit": "$/Mtok",
-      "price_sort_value": 5.0,
-      "price_sort_label": "$5.0/Mtok out"
+      "price_sort_value": 1.25,
+      "price_sort_label": "$1.25/Mtok out"
     },
     {
       "model": "Gemini 1.5 Pro",
@@ -602,13 +602,13 @@
       "pricing_url": "https://ai.google.dev/gemini-api/docs/pricing",
       "notes": "文本/图片/视频输入 $0.10，音频输入 $0.70；输出 $0.40。将于 2026-06-01 关闭，建议迁移到 2.5 Flash。",
       "input_price_usd_per_mtok": 0.1,
-      "output_price_usd_per_mtok": 0.4,
+      "output_price_usd_per_mtok": 0.7,
       "price_input": 0.1,
-      "price_output": 0.4,
+      "price_output": 0.7,
       "price_cache_hit": null,
       "price_unit": "$/Mtok",
-      "price_sort_value": 0.4,
-      "price_sort_label": "$0.4/Mtok out"
+      "price_sort_value": 0.7,
+      "price_sort_label": "$0.7/Mtok out"
     },
     {
       "model": "Gemini 2.5 Pro",
@@ -620,13 +620,13 @@
       "pricing_url": "https://ai.google.dev/gemini-api/docs/pricing",
       "notes": "当前主力。阶梯定价：≤200K 输入 $1.25/输出 $10.00；>200K 输入 $2.50/输出 $15.00。输出含 thinking tokens。",
       "input_price_usd_per_mtok": 1.25,
-      "output_price_usd_per_mtok": 10.0,
+      "output_price_usd_per_mtok": 2.5,
       "price_input": 1.25,
-      "price_output": 10.0,
+      "price_output": 2.5,
       "price_cache_hit": null,
       "price_unit": "$/Mtok",
-      "price_sort_value": 10.0,
-      "price_sort_label": "$10.0/Mtok out"
+      "price_sort_value": 2.5,
+      "price_sort_label": "$2.5/Mtok out"
     },
     {
       "model": "Gemini 2.5 Flash",
@@ -638,13 +638,13 @@
       "pricing_url": "https://ai.google.dev/gemini-api/docs/pricing",
       "notes": "文本/图片/视频输入 $0.30，音频输入 $1.00；输出 $2.50。1M 上下文。",
       "input_price_usd_per_mtok": 0.3,
-      "output_price_usd_per_mtok": 2.5,
+      "output_price_usd_per_mtok": 1.0,
       "price_input": 0.3,
-      "price_output": 2.5,
+      "price_output": 1.0,
       "price_cache_hit": null,
       "price_unit": "$/Mtok",
-      "price_sort_value": 2.5,
-      "price_sort_label": "$2.5/Mtok out"
+      "price_sort_value": 1.0,
+      "price_sort_label": "$1.0/Mtok out"
     },
     {
       "model": "Gemini 2.5 Flash-Lite",
@@ -656,13 +656,13 @@
       "pricing_url": "https://ai.google.dev/gemini-api/docs/pricing",
       "notes": "极轻量版，文本输入 $0.10，音频输入 $0.30；输出 $0.40。",
       "input_price_usd_per_mtok": 0.1,
-      "output_price_usd_per_mtok": 0.4,
+      "output_price_usd_per_mtok": 0.3,
       "price_input": 0.1,
-      "price_output": 0.4,
+      "price_output": 0.3,
       "price_cache_hit": null,
       "price_unit": "$/Mtok",
-      "price_sort_value": 0.4,
-      "price_sort_label": "$0.4/Mtok out"
+      "price_sort_value": 0.3,
+      "price_sort_label": "$0.3/Mtok out"
     },
     {
       "model": "Imagen 3",
@@ -829,14 +829,14 @@
       "context_window": null,
       "pricing_url": "https://mistral.ai/pricing/",
       "notes": "日常主力模型。上下文窗口源中未给出。",
-      "input_price_usd_per_mtok": 1.5,
-      "output_price_usd_per_mtok": 7.5,
-      "price_input": 1.5,
-      "price_output": 7.5,
+      "input_price_usd_per_mtok": 2.0,
+      "output_price_usd_per_mtok": 6.0,
+      "price_input": 2.0,
+      "price_output": 6.0,
       "price_cache_hit": null,
       "price_unit": "$/Mtok",
-      "price_sort_value": 7.5,
-      "price_sort_label": "$7.5/Mtok out"
+      "price_sort_value": 6.0,
+      "price_sort_label": "$6.0/Mtok out"
     },
     {
       "model": "Mistral Small 4",
