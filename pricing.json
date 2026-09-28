@@ -25,7 +25,7 @@
       "https://fastgptplus.com/en/posts/sora-2-api-pricing",
       "https://ai.baidu.com/ai-doc/WENXINWORKSHOP/3m1jdtoz1"
     ],
-    "last_updated": "2026-09-21",
+    "last_updated": "2026-09-28",
     "generator": "scripts/normalize_data.py",
     "stats": {
       "total_models": 99,
@@ -494,13 +494,13 @@
       "pricing_url": "https://platform.claude.com/docs/en/about-claude/pricing",
       "notes": "Opus 系列降价至 $5/$25（较 4.0 的 $15/$75 大幅下调）。1M token 上下文。",
       "input_price_usd_per_mtok": 5.0,
-      "output_price_usd_per_mtok": 6.25,
+      "output_price_usd_per_mtok": 25.0,
       "price_input": 5.0,
-      "price_output": 6.25,
+      "price_output": 25.0,
       "price_cache_hit": null,
       "price_unit": "$/Mtok",
-      "price_sort_value": 6.25,
-      "price_sort_label": "$6.25/Mtok out"
+      "price_sort_value": 25.0,
+      "price_sort_label": "$25.0/Mtok out"
     },
     {
       "model": "Claude Opus 4.8",
@@ -512,13 +512,13 @@
       "pricing_url": "https://platform.claude.com/docs/en/about-claude/pricing",
       "notes": "Opus 最新版，1M 上下文按标准定价（无长上下文加价）。",
       "input_price_usd_per_mtok": 5.0,
-      "output_price_usd_per_mtok": 6.25,
+      "output_price_usd_per_mtok": 25.0,
       "price_input": 5.0,
-      "price_output": 6.25,
+      "price_output": 25.0,
       "price_cache_hit": null,
       "price_unit": "$/Mtok",
-      "price_sort_value": 6.25,
-      "price_sort_label": "$6.25/Mtok out"
+      "price_sort_value": 25.0,
+      "price_sort_label": "$25.0/Mtok out"
     },
     {
       "model": "Claude Sonnet 4.5 / 4.6",
@@ -548,13 +548,13 @@
       "pricing_url": "https://platform.claude.com/docs/en/about-claude/pricing",
       "notes": "Haiku 最新版。Batch API 享 50% 折扣。",
       "input_price_usd_per_mtok": 10.0,
-      "output_price_usd_per_mtok": 12.5,
+      "output_price_usd_per_mtok": 50.0,
       "price_input": 10.0,
-      "price_output": 12.5,
+      "price_output": 50.0,
       "price_cache_hit": null,
       "price_unit": "$/Mtok",
-      "price_sort_value": 12.5,
-      "price_sort_label": "$12.5/Mtok out"
+      "price_sort_value": 50.0,
+      "price_sort_label": "$50.0/Mtok out"
     },
     {
       "model": "Gemini 1.5 Pro",
