@@ -25,7 +25,7 @@
       "https://fastgptplus.com/en/posts/sora-2-api-pricing",
       "https://ai.baidu.com/ai-doc/WENXINWORKSHOP/3m1jdtoz1"
     ],
-    "last_updated": "2026-10-05",
+    "last_updated": "2026-10-12",
     "generator": "scripts/normalize_data.py",
     "stats": {
       "total_models": 99,
@@ -547,14 +547,14 @@
       "context_window": "200K",
       "pricing_url": "https://platform.claude.com/docs/en/about-claude/pricing",
       "notes": "Haiku 最新版。Batch API 享 50% 折扣。",
-      "input_price_usd_per_mtok": 10.0,
-      "output_price_usd_per_mtok": 50.0,
-      "price_input": 10.0,
-      "price_output": 50.0,
+      "input_price_usd_per_mtok": 1.0,
+      "output_price_usd_per_mtok": 5.0,
+      "price_input": 1.0,
+      "price_output": 5.0,
       "price_cache_hit": null,
       "price_unit": "$/Mtok",
-      "price_sort_value": 50.0,
-      "price_sort_label": "$50.0/Mtok out"
+      "price_sort_value": 5.0,
+      "price_sort_label": "$5.0/Mtok out"
     },
     {
       "model": "Gemini 1.5 Pro",
